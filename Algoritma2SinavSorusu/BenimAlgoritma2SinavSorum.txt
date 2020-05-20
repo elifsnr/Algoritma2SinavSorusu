@@ -1,0 +1,72 @@
+Deneme tipindeki d nesnesinin g() fonksiyonu çağrılmıştır.
+ Bu fonksiyon a değişkenini döndürmektedir. 
+Her ne kadar deneme sınıfındaki yegane tanımlı a değişkeninin 
+değeri 4 olsa da bu sınıfın inşa fonksiyonunda (constructor) değer
+ olarak süper.a değeri atanmıştır. Buna göre miras alınan (inheritance) sınıfın
+ değeri kopyalanacaktır. Miras alınan sınıfta ise (ust class) a değişkeninin değeri
+ 5 olarak tanımlanmıştır. Bu durumda deneme sınıfından türetilen nesnenin a değişkeni de
+ 5 olacaktır (aslında 4 olan değerin üzerine 5 değeri konulacaktır) dolayısıyla ekrana 5 çıktısı verilecektir.
+
+Interface olarak tanımlanan ve uygulanan (implements) yapılar ile kodun bir ilgisi yoktur. 
+Buradaki a değişkenleri zaten sınıf tarafından kullanılmamaktadır.
+interface x{
+
+    int a = 9 ;
+
+}
+
+interface y extends x{
+
+    int a = 10 ;
+
+  int g();
+
+}
+
+class ust implements x{
+
+    int a = 5 ;
+
+    public int g(){
+
+        return a;
+
+    }
+
+}
+
+class deneme extends ust implements y{
+
+    public deneme(){
+
+        this .a = super .a;
+
+    }
+
+    int a = 4 ;
+
+    public int g(){
+
+     return a;
+
+    }
+
+    public int g( int a){
+
+        return super .a;
+
+    }
+
+}
+
+public class inter{
+
+    public static void main(String args[]){
+
+     ust d = new deneme();
+
+     System.out.println(d.g());
+
+    }
+
+}
